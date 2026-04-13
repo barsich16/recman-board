@@ -1,0 +1,225 @@
+.task__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+  }
+
+  &-content {
+    position: relative;
+    width: 450px;
+    max-width: 100%;
+    margin: 0;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.5)
+    );
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    z-index: 1;
+  }
+
+  &-title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  &-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 10px;
+    background: #f5f5f5;
+    min-height: 40px;
+    max-height: 300px;
+    overflow-y: auto;
+    resize: none;
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  &-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &--primary {
+      background: #6366f1;
+      color: #fff;
+
+      &:hover {
+        background: #4f46e5;
+      }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: #ef4444;
+
+      &:hover {
+        background: #ef4444;
+        color: #fff;
+      }
+    }
+  }
+
+  &-dropdown {
+    position: relative;
+    &-btn {
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 14px;
+      background: #f5f5f5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    &-arrow {
+      margin-left: auto;
+      transition: $dur-S $ease-out;
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-radius: 10px;
+      z-index: 20;
+      overflow: hidden;
+      max-height: 200px;
+      overflow-y: auto;
+
+      @include dropdown-reveal($dur-M, $ease-out);
+
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+        font-size: 14px;
+        transition: $dur-S;
+
+        &:hover {
+          background: #f3f4f6;
+          transform: translateX(2px);
+        }
+
+        &:active {
+          transform: scale(0.97);
+        }
+      }
+    }
+  }
+
+  &-tag {
+    position: relative;
+
+    &-trigger {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      background: #f5f5f5;
+      transition: $dur-S;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    &-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px;
+      z-index: 30;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+      @include dropdown-reveal($dur-M, $ease-out);
+    }
+
+    &-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: $dur-S;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.06);
+        transform: translateX(2px);
+      }
+
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+
+    &-icon {
+      transition: $dur-S;
+    }
+
+    &-arrow {
+      margin-left: auto;
+      transition: $dur-S $ease-out;
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .task__modal-content {
+    margin: 0 16px;
+  }
+}

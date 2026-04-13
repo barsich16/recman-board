@@ -1,0 +1,153 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0e0e11, #15151a);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at 50% 60%,
+      rgba(0, 198, 255, 0.06),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  &-inner {
+    text-align: center;
+    will-change: transform, opacity;
+  }
+
+  &__text {
+    font-size: clamp(48px, 9vw, 110px);
+    font-weight: 300;
+    letter-spacing: 10px;
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    span {
+      display: inline-block;
+    }
+  }
+
+  &__progress {
+    width: 240px;
+    height: 2px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  &__bar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      );
+
+      animation: shimmer 1.2s linear infinite;
+    }
+  }
+
+  &__counter {
+    margin-top: 16px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.preloader {
+  &__word {
+    display: inline-flex;
+    margin-right: 10px;
+  }
+
+  &__letter {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 768px) {
+  .preloader {
+    &__text {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__word {
+      display: flex;
+      margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader {
+    padding: 0 16px;
+
+    &__text {
+      font-size: 42px;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    &__progress {
+      width: 160px;
+    }
+
+    &__counter {
+      font-size: 12px;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .preloader {
+    &__text {
+      font-size: 34px;
+      letter-spacing: 2px;
+    }
+
+    &__progress {
+      width: 140px;
+    }
+  }
+}

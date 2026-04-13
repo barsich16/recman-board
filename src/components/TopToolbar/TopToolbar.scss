@@ -1,0 +1,148 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 24px;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+
+  &__left {
+    flex: 1;
+  }
+
+  &__search {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: $dur-S $ease;
+
+    &:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+  }
+
+  &__right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__dropdown {
+    position: relative;
+  }
+
+  &__dropdown-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e8e7e7;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: $dur-S $ease;
+    font-size: 16px;
+    &:hover {
+      background: #ccc;
+    }
+  }
+
+  &__icon {
+    transition: transform $dur-S $ease;
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    min-width: 140px;
+    z-index: 20;
+
+    @include dropdown-reveal($dur-M, $ease-out);
+
+    button {
+      background: transparent;
+      border: none;
+      text-align: left;
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: $dur-S $ease;
+
+      &:hover {
+        background: #ccc;
+      }
+    }
+  }
+
+  &__btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: $dur-S $ease;
+
+    &--primary {
+      background: #6366f1;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background: #4f46e5;
+      }
+    }
+  }
+
+  &__add-column {
+    position: relative;
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    margin: 12px 16px;
+    padding: 10px 12px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+
+    &__search {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar {
+    &__btn,
+    &__dropdown-btn {
+      font-size: 14px;
+      padding: 6px 8px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .toolbar__right {
+    justify-content: space-between;
+  }
+}

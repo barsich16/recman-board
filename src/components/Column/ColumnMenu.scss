@@ -1,0 +1,38 @@
+.column-menu-dropdown {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.11);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 20;
+
+  @include dropdown-reveal($dur-M, $ease-out);
+
+  button {
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: $dur-S $ease-out;
+
+    &:hover {
+      background: #e6e4e4;
+      color: #212121;
+    }
+
+    &.delete {
+      &:hover {
+        background: #e5484d;
+        color: #fff;
+      }
+    }
+  }
+}
